@@ -8,7 +8,7 @@ pub struct Command {
 pub const COMMANDS: &[Command] = &[
     Command {
         name: "create",
-        description: "Shows this help message",
+        description: "Creates a new project",
         aliases: &["c", "new"],
     },
 ];
