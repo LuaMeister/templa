@@ -1,3 +1,9 @@
+
+mod commands;
+use commands::COMMANDS;
+
 fn main() {
-    println!("Hello, world!");
+    for command in COMMANDS.iter() {
+        println!("{}: {}", command.name, command.description);
+    }
 }
