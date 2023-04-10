@@ -1,9 +1,12 @@
 
 mod commands;
+mod projects;
 use commands::COMMANDS;
+use projects::initialize_projects;
 
 fn main() {
-    // get first argument
+    initialize_projects();
+
     let command_name = std::env::args().nth(1).unwrap_or_else(|| {
         println!("No command has been specified");
         std::process::exit(1);
