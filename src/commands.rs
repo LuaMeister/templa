@@ -1,3 +1,4 @@
+use crate::projects::get_projects;
 
 pub struct Command {
     pub name: &'static str,
@@ -18,4 +19,21 @@ pub const COMMANDS: &[Command] = &[
             run
         },
     },
+
+    Command {
+        name: "view",
+        description: "Shows all templates.",
+        aliases: &["v", "ls"],
+        run: {
+            fn run() {
+                let projects = get_projects();
+
+                println!("Templates:");
+                for template in projects.iter() {
+                    println!("- {}", template.name);
+                }
+            }
+            run
+        },
+    }
 ];

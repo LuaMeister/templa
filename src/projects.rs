@@ -6,7 +6,7 @@ pub struct Project {
     pub path: PathBuf,
 }
 
-pub fn initialize_projects() -> Vec<Project> {
+pub fn get_projects() -> Vec<Project> {
     let mut projects = Vec::new();
 
     let mut path = std::env::current_exe().unwrap();
