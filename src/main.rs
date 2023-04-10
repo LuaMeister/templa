@@ -14,7 +14,7 @@ fn main() {
 
     for command in COMMANDS.iter() {
         if command_name == command.name || command.aliases.contains(&command_name.as_str()) {
-            println!("Command found: {}", command.name);
+            (command.run)();
         }
     }
 }

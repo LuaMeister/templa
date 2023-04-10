@@ -12,10 +12,7 @@ pub fn initialize_projects() -> Vec<Project> {
     let mut path = std::env::current_exe().unwrap();
     let dir = path.parent().expect("Could not get parent directory");
     path = PathBuf::from(dir);
-
-    println!("Current path: {}", path.display());
     path.push("projects");
-    println!("Projects path: {}", path.display());
 
     if path.exists() {
         for entry in std::fs::read_dir(path).unwrap() {
@@ -31,10 +28,6 @@ pub fn initialize_projects() -> Vec<Project> {
     } else {
         println!("Projects directory does not exist");
         std::process::exit(1);
-    }
-
-    for project in projects.iter() {
-        println!("Project: {}", project.name);
     }
 
     projects
