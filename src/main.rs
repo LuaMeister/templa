@@ -1,6 +1,7 @@
 
+mod templates;
 mod commands;
-mod projects;
+
 use commands::COMMANDS;
 
 fn main() {

@@ -1,39 +1,36 @@
-use crate::projects::get_projects;
+
+use crate::templates::get_templates;
 
 pub struct Command {
     pub name: &'static str,
-    pub description: &'static str,
     pub aliases: &'static [&'static str],
     pub run: fn(),
 }
 
 pub const COMMANDS: &[Command] = &[
     Command {
-        name: "create",
-        description: "Creates a new project from a template.",
-        aliases: &["c", "new"],
-        run: {
-            fn run() {
-                println!("Ran the create command");
-            }
-            run
-        },
-    },
+        name: "templates",
+        aliases: &["t"],
+        run: || {
+            // Get existing templates
+            let templates = get_templates();
 
-    Command {
-        name: "view",
-        description: "Shows all templates.",
-        aliases: &["v", "ls"],
-        run: {
-            fn run() {
-                let projects = get_projects();
+            // Make sure to report an error if there is one
+            templates.is_err().then(|| {
+                println!("An error occurred while trying to get the templates:");
+                return;
+            });
 
-                println!("Templates:");
-                for template in projects.iter() {
+            // Display information to the user
+            let templates = templates.unwrap();
+            if templates.len() == 0 {
+                println!("No templates have been found");
+            } else {
+                for template in templates.iter() {
+                    println!("Available Templates:");
                     println!("- {}", template.name);
                 }
             }
-            run
-        },
+        }
     }
 ];
